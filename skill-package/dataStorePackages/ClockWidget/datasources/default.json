@@ -1,0 +1,15 @@
+{
+  "clock": {
+    "timeFormat": "24h",
+    "showSeconds": false,
+    "showAmPm": true,
+    "dateStyle": "long",
+    "size": "medium",
+    "tapToToggle": true,
+    "textColor": "#FFFFFF",
+    "dateColor": "#9FB3C8",
+    "backgroundColor": "#0F1A24",
+    "dayNames": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    "monthNames": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+  }
+}

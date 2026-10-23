@@ -1,0 +1,12 @@
+{
+  "name": "clock-widget-skill",
+  "version": "1.0.0",
+  "description": "Alexa skill backend for the Clock Widget on Echo Show.",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "ask-sdk-core": "^2.14.0",
+    "ask-sdk-model": "^1.86.0"
+  }
+}
