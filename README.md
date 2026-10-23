@@ -40,6 +40,8 @@ Text size is worked out from the viewport, so the time and date always fit on on
 
 ## Setting it up in the Alexa developer console
 
+For a step-by-step checklist with links to each file, see [docs/console-setup.md](docs/console-setup.md).
+
 ### 1. Create the skill
 
 1. Go to <https://developer.amazon.com/alexa/console/ask> and click **Create Skill**.
