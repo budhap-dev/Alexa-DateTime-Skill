@@ -1,0 +1,41 @@
+{
+  "packageVersion": "1.0",
+  "packageType": "APL_PACKAGE",
+  "publishingInformation": {
+    "schemaVersion": "1.0",
+    "locales": {
+      "en-GB": [
+        {
+          "targetViewport": "WIDGET_M",
+          "metadata": {
+            "name": "Clock",
+            "description": "A clean clock showing the current time and date. Tap it to switch between 12-hour and 24-hour time.",
+            "keywords": ["clock", "time", "date", "calendar"],
+            "iconUri": "https://d3ozx4qyxcxwzd.cloudfront.net/default_icon.png",
+            "previews": ["https://d3ozx4qyxcxwzd.cloudfront.net/default_preview.png"]
+          }
+        }
+      ],
+      "en-US": [
+        {
+          "targetViewport": "WIDGET_M",
+          "metadata": {
+            "name": "Clock",
+            "description": "A clean clock showing the current time and date. Tap it to switch between 12-hour and 24-hour time.",
+            "keywords": ["clock", "time", "date", "calendar"],
+            "iconUri": "https://d3ozx4qyxcxwzd.cloudfront.net/default_icon.png",
+            "previews": ["https://d3ozx4qyxcxwzd.cloudfront.net/default_preview.png"]
+          }
+        }
+      ]
+    }
+  },
+  "manifest": {
+    "id": "ClockWidget",
+    "version": "1.0.0",
+    "installStateChanges": "AUTOMATIC",
+    "updateStateChanges": "AUTOMATIC",
+    "presentationDefinitions": [{ "url": "presentations/default.tpl" }],
+    "appliesTo": "${viewport.mode == 'HUB'}"
+  }
+}

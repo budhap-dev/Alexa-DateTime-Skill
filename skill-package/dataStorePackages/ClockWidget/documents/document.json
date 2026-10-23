@@ -1,0 +1,59 @@
+{
+  "type": "APL",
+  "version": "2023.3",
+  "theme": "dark",
+  "description": "Date and time widget. Reads the device's live localTime, so it updates on its own with no server calls. All options come from the 'clock' data source.",
+  "mainTemplate": {
+    "parameters": ["clock"],
+    "items": [
+      {
+        "type": "Frame",
+        "width": "100%",
+        "height": "100%",
+        "backgroundColor": "${clock.backgroundColor}",
+        "item": {
+          "type": "TouchWrapper",
+          "id": "clockRoot",
+          "width": "100%",
+          "height": "100%",
+          "bind": [
+            { "name": "use24h", "value": "${clock.timeFormat == '24h'}" },
+            { "name": "showSecs", "value": "${clock.showSeconds == true}" },
+            { "name": "sizeFactor", "value": "${{'small': 0.6, 'medium': 0.8, 'large': 1.0}[clock.size] ?? 0.8}" },
+            { "name": "timeText", "value": "${Time.format(use24h ? (showSecs ? 'HH:mm:ss' : 'HH:mm') : (showSecs ? 'h:mm:ss' : 'h:mm'), localTime)}" },
+            { "name": "ampm", "value": "${(use24h || clock.showAmPm == false) ? '' : (Time.hours(localTime) >= 12 ? 'PM' : 'AM')}" },
+            { "name": "dayName", "value": "${clock.dayNames[Time.weekDay(localTime)]}" },
+            { "name": "monthName", "value": "${clock.monthNames[Time.month(localTime)]}" },
+            { "name": "dateText", "value": "${clock.dateStyle == 'none' ? '' : clock.dateStyle == 'short' ? String.slice(dayName, 0, 3) + ' ' + Time.date(localTime) + ' ' + String.slice(monthName, 0, 3) : clock.dateStyle == 'numeric' ? Time.format('DD/MM/YYYY', localTime) : clock.dateStyle == 'us' ? Time.format('MM/DD/YYYY', localTime) : clock.dateStyle == 'iso' ? Time.format('YYYY-MM-DD', localTime) : dayName + ', ' + Time.date(localTime) + ' ' + monthName + ' ' + Time.year(localTime)}" },
+            { "name": "timeFit", "value": "${Math.min(viewport.width * 0.9 / (String.length(timeText) * 0.6 + (ampm == '' ? 0 : 1.1)), viewport.height * (dateText == '' ? 0.6 : 0.42))}" },
+            { "name": "timeFont", "value": "${timeFit * sizeFactor}" },
+            { "name": "dateFont", "value": "${dateText == '' ? 0 : Math.min(timeFont * 0.3, viewport.width * 0.9 / (String.length(dateText) * 0.55))}" }
+          ],
+          "accessibilityLabel": "${timeText} ${ampm}. ${dateText}",
+          "onPress": [
+            { "type": "SetValue", "when": "${clock.tapToToggle}", "componentId": "clockRoot", "property": "use24h", "value": "${!use24h}" }
+          ],
+          "item": {
+            "type": "Container",
+            "width": "100%",
+            "height": "100%",
+            "justifyContent": "center",
+            "alignItems": "center",
+            "items": [
+              {
+                "type": "Container",
+                "direction": "row",
+                "alignItems": "baseline",
+                "items": [
+                  { "type": "Text", "text": "${timeText}", "fontSize": "${timeFont}", "fontWeight": "300", "color": "${clock.textColor}", "maxLines": 1 },
+                  { "type": "Text", "when": "${ampm != ''}", "text": "${ampm}", "fontSize": "${timeFont * 0.32}", "fontWeight": "500", "color": "${clock.textColor}", "paddingLeft": "${timeFont * 0.12}", "maxLines": 1 }
+                ]
+              },
+              { "type": "Text", "when": "${dateText != ''}", "text": "${dateText}", "fontSize": "${dateFont}", "color": "${clock.dateColor}", "paddingTop": "${timeFont * 0.08}", "textAlign": "center", "maxLines": 1 }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}
